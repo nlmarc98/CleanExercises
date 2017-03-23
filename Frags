@@ -1,0 +1,32 @@
+//Marc Verwoert S4718801
+//Madelief Rennspies s4703103
+
+implementation module Frags
+
+import StdEnv
+import StdDebug
+
+//1. General type: [a] can be everything. 
+
+//2.
+fragsn :: [a] -> Int
+fragsn [] = 0
+fragsn xs = (1 + length xs)*(length xs+1)/2
+
+
+//3.
+
+frags :: [a]->[[a]]
+frags xs= recursion xs
+
+recursion :: [a] -> [[a]]
+recursion [x]=[[x]]
+recursion xs = tails xs ++ recursion (init xs)
+
+tails :: [a] -> [[a]]
+tails []= abort ""
+tails [x]=[[x]]
+tails [x:xs]= [[x:xs]] ++ tails xs
+
+
+Start= frags [1,2,3]
